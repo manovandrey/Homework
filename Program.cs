@@ -3,35 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-namespace ControlNumber
+//https://judge.softuni.bg/Contests/Practice/Index/233#4
+namespace Diamond
 {
     class Program
     {
         static void Main(string[] args)
         {
             int n = int.Parse(Console.ReadLine());
-            int m = int.Parse(Console.ReadLine());
-            int controlNumber = int.Parse(Console.ReadLine());
-            int sum = 0;
-            int counter = 0;
+            int width = 5 * n;
 
-            for (int i = 1; i <= n; i++)
+
+            Console.WriteLine("{0}{1}{0}", new string('.', n), new string('*', width - 2 * n));
+
+            for (int i = 0; i < n - 1; i++)
             {
-                for (int j = m; j >= 1; j--)
-                {
-                    counter++;
-                    sum = sum + i * 2 + j * 3;
-                    if (sum >= controlNumber)
-                    {
-                        Console.WriteLine("{0} moves", counter);
-                        Console.WriteLine("Score: {0} >= {1}", sum, controlNumber);
-                        return;
-                    }
-                }
+                int dots = n - (1 + i);
+                Console.WriteLine("{0}*{1}*{0}", new string('.', dots), new string('.', width - 2 * dots - 2));
             }
 
-            Console.WriteLine("{0} moves", counter);
+            Console.WriteLine("{0}", new string('*', width));
+
+            for (int i = 0; i < n * 2; i++)
+            {
+                int dots = i + 1;
+                Console.WriteLine("{0}*{1}*{0}", new string('.', dots), new string('.', width - 2 * dots - 2));
+            }
+
+            Console.WriteLine("{0}{1}{0}", new string('.', n*2 + 1), new string('*', n - 2));
         }
     }
 }
